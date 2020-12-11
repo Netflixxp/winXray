@@ -1,5 +1,5 @@
 {
-updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update32/";
-description="修正WIN7设置全局代理的问题，增加测速工具。Fixes #1";
-outputDir="/release/update32/"
+updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
+description="增加订阅管理，一些细节优化。Fixes #11,resolves #4";
+outputDir="/release/update/"
 }

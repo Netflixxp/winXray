@@ -46,8 +46,12 @@ $serverMain = ..wsock.tcp.simpleHttpServer.mainThread(
 $serverMain.threadNum = 50; 
 
 var pacPath = ..io.appData("/winXray/pac.txt");
-if( ! ..io.exist(pacPath) ){
+resetPac = function(){
 	..string.save(pacPath,$"/pac.txt" )
+}
+
+if( ! ..io.exist(pacPath) ){
+	resetPac();
 }
 
 loadPacText = function(){
@@ -58,6 +62,8 @@ savePacText = function(json){
 	var str = ..string.replace($"/pac.txt","var\s+rules\s*=\s*%\[\]","var rules = " + json);
 	..string.save(pacPath,str );
 }
+
+
 
 var inboundPort = ..thread.var();
 restart = function(){  
@@ -132,4 +138,5 @@ restart() = 重启PAC服务器
 getUrl(.(localIp) = 返回PAC服务地址
 getPort() = 返回PAC端口
 updateConfig(.(socksProxyPort,httpProxPort) = 更新代理端口或PAC数据
+resetPac() = 重置为默认PAC
 end intellisense**/

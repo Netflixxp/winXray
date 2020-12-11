@@ -6,8 +6,10 @@ winXray[:loud_sound:](http://dict.youdao.com/dictvoice?audio=winxray&type=2) 是
 这里说明一下，简洁不等于功能弱。一般人只是为了上个网加个速用不上太复杂的小众功能。太复杂同时就会带来不稳定、且不必要的占用资源并同时降低性能，所以 winXray 做了大量的优化、精简，但是并没有减少主要的、必要的代理服务器功能。  
   
 <details>  <summary>最新公益服务器列表</summary>  <pre>
-vless://bf4a6c2b-db1b-57de-f45a-364aa254d1f7@z.vulvpstech.xyz:443/?flow=xtls-rprx-direct&host=z.vulvpstech.xyz&tls=xtls#%E7%BE%8E%E5%9B%BD%E8%A5%BF%E9%9B%85%E5%9B%BE_XTLS%2FDirect
-vless://904da8f7-a5af-3c34-3f3d-c3b2ea59bde8@q.vulvpstech.xyz:443/?host=q.vulvpstech.xyz&tls=xtls#%E7%BE%8E%E5%9B%BD%E6%B4%9B%E6%9D%89%E7%9F%B6_XTLS%2FDirect
+vless://bf4a6c2b-db1b-57de-f45a-364aa254d1f7@z.vulvpstech.xyz:443/?flow=xtls-rprx-direct&host=z.vulvpstech.xyz&sni=z.vulvpstech.xyz&tls=xtls#%E7%BE%8E%E5%9B%BD%E8%A5%BF%E9%9B%85%E5%9B%BE_XTLS%2FDirect
+vless://904da8f7-a5af-3c34-3f3d-c3b2ea59bde8@q.vulvpstech.xyz:443/?host=q.vulvpstech.xyz&sni=q.vulvpstech.xyz&tls=xtls#%E7%BE%8E%E5%9B%BD%E6%B4%9B%E6%9D%89%E7%9F%B6_XTLS%2FDirect
+vless://beed7718-9b1a-37e9-eb98-87912fdde141@z001.vulvpstech.xyz:443/?flow=xtls-rprx-direct&host=z001.vulvpstech.xyz&sni=z001.vulvpstech.xyz&tls=xtls#%E7%BE%8E%E5%9B%BD%E8%A5%BF%E9%9B%85%E5%9B%BE_XTLS%2FDirect
+vless://e92b4a5a-e35a-7309-0b39-621b6ddffd59@jp.vulvpstech.xyz:443/?flow=xtls-rprx-direct&host=jp.vulvpstech.xyz&sni=jp.vulvpstech.xyz&tls=xtls#%E6%97%A5%E6%9C%AC%E4%B8%9C%E4%BA%AC_XTLS%2FDirect
 </pre></details>    
 
 <details>  <summary>vless 分享链接格式说明：</summary>  <pre>

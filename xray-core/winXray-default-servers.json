@@ -9,9 +9,10 @@
         "host":"z.vulvpstech.xyz",
         "id":"bf4a6c2b-db1b-57de-f45a-364aa254d1f7",
         "network":"tcp",
-        "port":"443",
+        "port":443,
         "protocol":"vless",
         "ps":"美国西雅图_XTLS/Direct",
+        "sni":"z.vulvpstech.xyz",
         "tls":"xtls"
     },
     {
@@ -19,9 +20,34 @@
         "host":"q.vulvpstech.xyz",
         "id":"904da8f7-a5af-3c34-3f3d-c3b2ea59bde8",
         "network":"tcp",
-        "port":"443",
+        "port":443,
         "protocol":"vless",
         "ps":"美国洛杉矶_XTLS/Direct",
+        "sni":"q.vulvpstech.xyz",
+        "tls":"xtls"
+    },
+    {
+        "address":"z001.vulvpstech.xyz",
+        "flow":"xtls-rprx-direct",
+        "host":"z001.vulvpstech.xyz",
+        "id":"beed7718-9b1a-37e9-eb98-87912fdde141",
+        "network":"tcp",
+        "port":443,
+        "protocol":"vless",
+        "ps":"美国西雅图_XTLS/Direct",
+        "sni":"z001.vulvpstech.xyz",
+        "tls":"xtls"
+    },
+    {
+        "address":"jp.vulvpstech.xyz",
+        "flow":"xtls-rprx-direct",
+        "host":"jp.vulvpstech.xyz",
+        "id":"e92b4a5a-e35a-7309-0b39-621b6ddffd59",
+        "network":"tcp",
+        "port":443,
+        "protocol":"vless",
+        "ps":"日本东京_XTLS/Direct",
+        "sni":"jp.vulvpstech.xyz",
         "tls":"xtls"
     }
 ]

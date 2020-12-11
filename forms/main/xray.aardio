@@ -122,7 +122,23 @@ Accept-Charset:utf-8;
 	}	
 }
 
+var autoUpdateSubscriptionTimerId; 
+var autoUpdateSubscription = function(...){
+  	..win.clearTimeout(autoUpdateSubscriptionTimerId); 
+  	autoUpdateSubscriptionTimerId = ..win.setTimeout(function(...){
+  		autoUpdateSubscriptionTimerId = null;
+  		
+  		import xray.outbounds;
+		xray.outbounds.autoUpdateSubscription();
+  	},3000,...)
+} 
+
 frmXray.onStartXrayComplete = function(outboundIndex,currentTesting){
+    if(autoUpdateSubscriptionTimerId){
+    	..win.clearTimeout(autoUpdateSubscriptionTimerId); 
+    	autoUpdateSubscriptionTimerId = null;
+    }
+    
 	frmXray.listview.ensureVisible(outboundIndex);
 	
 	for b,v in table.eachIndex(config.proxy.outbounds){
@@ -153,6 +169,7 @@ subscribe("activeOutbound",function(address){
 
 frmXray.onStartXrayFailed = function(outboundIndex,enableRetry){
     ..publish("activeOutbound",false);
+    autoUpdateSubscription();
     
 	frmXray.listview.ensureVisible(outboundIndex);
 	if(frmXray.listview.activeOutboundIndex==outboundIndex){

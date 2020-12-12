@@ -91,6 +91,12 @@ importFromString = function(str,subscribeUrl){
 	}
 	
 	if( ..table.isArray(jsonData) ){  
+		for(i=#jsonData;1;-1){
+			if( !validOutbound(jsonData[i]) ) {
+				..table.remove(jsonData,i);
+			} 
+		}
+		
 		return jsonData;
 	}
 	elseif( type(jsonData) == type.table ){ 
@@ -132,19 +138,13 @@ importFromString = function(str,subscribeUrl){
 					outbound.method = null;
 				}
 				
-				
-				
 				..table.push(outbounds,outbound);
 			}
 			
 			return outbounds;
 		}
 		else {
-			if(jsonData.address && jsonData.protocol && jsonData.port){
-				return {
-					jsonData
-				}	
-			} 
+			if( validOutbound(jsonData) ) return {jsonData};
 		} 
 	}
 	
@@ -408,48 +408,8 @@ importFromString = function(str,subscribeUrl){
 		var json = ..string.match(line,`^\s*%\{\}\s*$`);
 		if( json ) {
 			var outbound  = ..web.json.tryParse(json)
-			if(outbound){
-				if(outbound.aid){
-					outbound.alterId = outbound.aid;
-					outbound.aid = null;
-				}
-				
-				if(outbound.add){
-					outbound.address = outbound.add;
-					outbound.add = null;
-					..table.define(outbound);
-				}
-			
-			
-			 	if(outbound.net){
-					outbound.network = outbound.net;
-					outbound.net = null;
-					..table.define(outbound);
-				}
-				
-				if(outbound.peer && #outbound.peer){
-					outbound.sni = outbound.peer;
-					outbound.peer = null;
-					..table.define(outbound);
-				}
-				
-				if(!outbound.security){
-					if(outbound.method && outbound.method!="none"){
-						outbound.security = outbound.method;
-						outbound.method = null;
-						..table.define(outbound);
-					}
-				}
-				
-				if(!outbound.protocol){
-					outbound.protocol = "vmess";
-					if(outbound.ps && ..string.find(outbound.ps,"@@vless")){
-						outbound.protocol = "vless";
-					}
-				}
-				
-				outbound.v = null;
-				..table.push(outbounds,outbound );
+			if(type(outbound)=="table"){
+				if( validOutbound(outbound) ) ..table.push(outbounds,outbound );
 				continue;
 			}
 		}
@@ -465,6 +425,85 @@ importFromClipboard  = function(){
 	str = ..string.trim(str,'"\'\s\t\r\n ');
 	return importFromString(str);
 }
+
+validAll = function(outbounds){ 
+    for(i=#outbounds;1;-1){
+    	if(!validOutbound(outbounds[i])){
+    		..table.remove(outbounds,i);
+    	} 
+    } 
+    
+    return outbounds;
+}
+    
+validOutbound = function(outbound){  
+	if(type(outbound)!="table"){ return;  }
+	
+	if(outbound.aid){
+		outbound.alterId = outbound.aid;
+		outbound.aid = null;
+	}
+	
+	if(outbound.add){
+		outbound.address = outbound.add;
+		outbound.add = null;
+		..table.define(outbound);
+	}
+	
+	if(outbound.net){
+		outbound.network = outbound.net;
+		outbound.net = null;
+		..table.define(outbound);
+	}
+	
+	if(outbound.peer && #outbound.peer){
+		outbound.sni = outbound.peer;
+		outbound.peer = null;
+		..table.define(outbound);
+	}
+	
+	if(!outbound.security){
+		if(outbound.method && outbound.method!="none"){
+			outbound.security = outbound.method;
+			outbound.method = null;
+			..table.define(outbound);
+		}
+	}
+	
+	if(!outbound.address){
+		if(outbound.server){
+			outbound.address = outbound.server;
+			outbound.server = null;
+			..table.define(outbound);
+		}
+	}
+	
+	if(!outbound.ps){
+		if(outbound.remarks){
+			outbound.ps = outbound.remarks;
+			outbound.remarks = null;
+			..table.define(outbound);
+		}
+	}
+	
+	if(!outbound.protocol){
+		outbound.protocol = "vmess";
+		if(outbound.ps && ..string.find(outbound.ps,"@@vless")){
+			outbound.protocol = "vless";
+		}
+	}
+	
+	if(!outbound.port){
+		outbound.port=443;
+	} 
+	
+	outbound.v = null;
+	
+	if(outbound.address){
+		return outbound;
+	}
+}
+
 
 updateSubscription = function(bySetting){
     
@@ -662,7 +701,7 @@ autoUpdateSubscription = function(){
 	..publish("uiCommand.print","已自动刷新" + count + "个订阅服务器。")
 } )
 
-/**intellisense(xray.outbounds)
+/**intellisense(xray.outbounds) 
 exportSharedLinks(.(outbounds) = 导出分享链接
 importFromString(.(str,subscribeUrl) = 导入分享链接
 importFromClipboard() = 自剪贴板导入分享链接

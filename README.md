@@ -59,3 +59,5 @@ winXray支持批量导入 vless、vmess、ss、trojan、trojan-go …… 等格�
 发行文件仅需要 "./winXray.exe"，可选带上 "./xray-core/" 目录（ 如果没有找到会自动到v2ray官网下载，不过没有代理服务器下载有时候非常慢 )。
 
 ![端口配置](./screenshots/config.advanced.png)
+
+<img src="./screenshots/telegram.gif" width="1031" alt="Telegram 端口配置">

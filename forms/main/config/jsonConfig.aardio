@@ -57,7 +57,7 @@ tbs.onSelchange = function(idx,strip,form){
 		winform.advancedConfig.hide = true;
 		winform.subscription.hide = true;
 		
-		winform.lbTip.text = `"inbounds[0]，inbounds[1]必须为入站socks、http 代理，outbounds[0] 会自动转换为出站服务器数组： `
+		winform.lbTip.text = `inbounds[0]，inbounds[1]必须为入站socks、http 代理，outbounds[0] 会转换为出站服务器数组： `
 		winform.btnUpdate.text = "更新Xray配置 "
 		winform.btnUpdate.hide = false;
 	}	
@@ -98,42 +98,7 @@ winform.btnUpdate.oncommand = function(id,event){
 			}
 			
 			if(cfg){
-				cfg = ..table.map(cfg,function(outbound,k,result){
-					if(outbound.aid){
-						outbound.alterId = outbound.aid;
-						outbound.aid = null;
-						table.define(outbound);
-					}
-					
-					if(outbound.add){
-						outbound.address = outbound.add;
-						outbound.add = null;
-						table.define(outbound);
-					}
-			 
-			 
-			 		if(outbound.net){
-						outbound.network = outbound.net;
-						outbound.net = null;
-						table.define(outbound);
-					}
-					
-					if(outbound.peer && #outbound.peer){
-						outbound.sni = outbound.peer;
-						outbound.peer = null;
-						table.define(outbound);
-					}
-					
-					if(!outbound.security){
-						if(outbound.method && outbound.method!="none"){
-							outbound.security = outbound.method;
-							outbound.method = null;
-							table.define(outbound);
-						}
-					}
-					
-					return outbound; 
-				})	
+				cfg = xray.outbounds.validAll(cfg)	
 			}
 			config.proxy.outbounds = cfg : ..table.array();
 		}
@@ -530,8 +495,20 @@ winform.editOutbounds.enablePopMenu(function(){
 		}}); 
 		
 		return menu;
-	}
+	} 
 })
+
+winform.editCoreConfig.enablePopMenu({ 
+	{ /*---分隔线---*/ };
+	{ "重置为默认 Xray 配置";
+		function(id){  
+			config.__resetDefaultCore();
+			winform.editCoreConfig.text = web.json.stringify( 
+				config.core.default,true
+			)
+		} 
+	}; 
+} )
 
 subscribe("outbounds.updateConfigJson",function(){
 	if(winform.editOutbounds.modified){

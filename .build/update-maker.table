@@ -1,5 +1,5 @@
 {
 updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
-description="增加订阅管理，一些细节优化。Fixes #11,resolves #4";
+description="发布 v1.4.4 增加二维码工具，增加恢复默认 Xray 配置，优化代码等。 #17";
 outputDir="/release/update/"
 }

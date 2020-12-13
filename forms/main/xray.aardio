@@ -314,7 +314,7 @@ frmXray.btnTcping.oncommand = function(id,event){
 			raw.closehandle(h);
 		} 
 		
-		..thread.waitOne(handles);
+		if(#handles) ..thread.waitOne(handles);
 		frmXray.btnTcping.disabledText = null;
 	}
 	else {

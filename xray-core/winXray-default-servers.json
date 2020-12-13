@@ -28,9 +28,10 @@
     },
     {
         "address":"z001.vulvpstech.xyz",
+        "autoConnect":false,
         "flow":"xtls-rprx-direct",
         "host":"z001.vulvpstech.xyz",
-        "id":"beed7718-9b1a-37e9-eb98-87912fdde141",
+        "id":"7f7e7583-a39c-2521-e49f-3ad96f4d6661",
         "network":"tcp",
         "port":443,
         "protocol":"vless",
@@ -40,9 +41,10 @@
     },
     {
         "address":"jp.vulvpstech.xyz",
+        "autoConnect":false,
         "flow":"xtls-rprx-direct",
         "host":"jp.vulvpstech.xyz",
-        "id":"e92b4a5a-e35a-7309-0b39-621b6ddffd59",
+        "id":"08c0e555-3bd8-2e5f-6ba5-22ac6c8ece47",
         "network":"tcp",
         "port":443,
         "protocol":"vless",

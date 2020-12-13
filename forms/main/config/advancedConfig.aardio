@@ -275,8 +275,9 @@ fsys.update.simpleMain.onStatusChanged(function(version,description,status){
 		tooltipCtrl.addTool(winform.lnkVersion,description);
 	}
 	elseif(status=="complete"){
-		winform.lnkVersion.text = "已更新到最新版本:" + version;
+		winform.lnkVersion.text = "已更新到最新版本:" + version; 
 		tooltipCtrl.addTool(winform.lnkVersion,description);
+		..publish("uiCommand.print",winform.lnkVersion.text );
 	} 
 	elseif(status=="latest"){
 		winform.lnkVersion.disabledText = null;
@@ -284,8 +285,9 @@ fsys.update.simpleMain.onStatusChanged(function(version,description,status){
 		
 	} 
 	elseif(status=="failed"){
-		winform.lnkVersion.disabledText = null;
-		winform.msgErr(description);
+		winform.lnkVersion.disabledText = null; 
+		..publish("uiCommand.print",description);
+		..publish("uiCommand.print","建议在「工具」中运行「github优化工具」修复无法访问 raw.githubusercontent.com 的问题。");
 	}
 })
 

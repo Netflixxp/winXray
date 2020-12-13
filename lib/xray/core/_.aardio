@@ -21,6 +21,9 @@ var prcsXray;
 import process.job.limitKill;
 restart = function(editor,outbound){
     if(!outbound){ return null,"错误的出站代理服务器配置"  }
+    if(_WINXP){
+    	return null,"抱歉！Xray Core 不支持 Windows XP, 仅支持 Windows 7, Windows 10 以及更新操作系统。";  
+    }
 
 	var inbounds = ..config.core.default[["inbounds"]];
 	if(! (..table.isArray(inbounds) && inbounds[1] ) ){

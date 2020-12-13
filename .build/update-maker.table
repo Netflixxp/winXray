@@ -1,5 +1,5 @@
 {
 updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
-description="发布 v1.4.4 增加二维码工具，增加恢复默认 Xray 配置，优化代码等。 #17";
+description="修正报参数错、更新错误，增加UUID生成工具。Fixes #19,Fixes #21";
 outputDir="/release/update/"
 }
